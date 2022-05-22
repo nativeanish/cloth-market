@@ -49,7 +49,7 @@ const Clothes = () => {
           );
         });
     } catch (error) {
-      console.log(`Hey there is an error { error }`);
+      console.log({ error });
       toast(<NotificationError text="Failed to create a product." />);
     } finally {
       setLoading(false);
