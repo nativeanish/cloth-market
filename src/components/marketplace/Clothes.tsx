@@ -37,12 +37,19 @@ const Clothes = () => {
   ) => {
     try {
       setLoading(true);
-      createProduct({ name, image, price, quantity }).then(() => {
-        getProducts();
-      });
-      toast(<NotificationSuccess text="Product added successfully." />);
+      createProduct({ name, image, price, quantity })
+        .then(() => {
+          toast(<NotificationSuccess text="Product added successfully." />);
+          getProducts();
+        })
+        //@ts-ignore
+        .catch((ef) => {
+          toast(
+            <NotificationError text="Something wrong went with your product entry. " />
+          );
+        });
     } catch (error) {
-      console.log({ error });
+      console.log(`Hey there is an error { error }`);
       toast(<NotificationError text="Failed to create a product." />);
     } finally {
       setLoading(false);
